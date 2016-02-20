@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using TransportAPISharp;
 
@@ -11,7 +10,7 @@ namespace TransportAPISharpUnitTests
         [TestMethod]
         public void TestBusStopsNear()
         {
-            var client = new TransportApiClient(ApiCredentials.apiKey, ApiCredentials.apiSecret);
+            var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey);
 
             var response = client.BusStopsNear(51.4728, -0.4876).Result;
 

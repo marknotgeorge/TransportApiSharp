@@ -1,0 +1,35 @@
+<Page x:Class="TransportApiSharpSample.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:TransportApiSharpSample.Views"
+      xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:TransportApiSharpSample.ViewModels"
+      DataContext="{Binding Source={StaticResource Locator},
+                            Path=MainPageViewModel}"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Content="Nearby Bus Stops">
+            <controls:PageHeader.PrimaryCommands>
+                <AppBarButton Command="{Binding LoadBusStops}"
+                              Icon="MapPin"
+                              Label="Load" />
+            </controls:PageHeader.PrimaryCommands>
+        </controls:PageHeader>
+
+        <Grid Grid.Row="1" Padding="12,4,0,0">
+            <maps:MapControl x:Name="myMap" />
+        </Grid>
+    </Grid>
+</Page>

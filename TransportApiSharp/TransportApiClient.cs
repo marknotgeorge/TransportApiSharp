@@ -9,13 +9,13 @@ namespace TransportAPISharp
     {
         private const string BaseUrl = "http://transportapi.com/v3/";
 
-        private readonly string _apiKey;
-        private readonly string _apiSecret;
+        private readonly string _appId;
+        private readonly string _appKey;
 
-        public TransportApiClient(string apiKey, string apiSecret)
+        public TransportApiClient(string appId, string appKey)
         {
-            _apiKey = apiKey;
-            _apiSecret = apiSecret;
+            _appId = appId;
+            _appKey = appKey;
         }
 
         public async Task<BusStopsNearResponse> BusStopsNear(double lat, double lon, int page = 1, int rpp = 25)
@@ -23,7 +23,7 @@ namespace TransportAPISharp
             BusStopsNearResponse returnVal = null;
             var client = new HttpClient();
             var task = await client.GetAsync("http://transportapi.com/v3/uk/bus/stops/near.json?"
-                + $"app_id={_apiKey}&app_key={_apiSecret}"
+                + $"app_id={_appId}&app_key={_appKey}"
                 + $"&lat={lat}&lon={lon}&page={page}&rpp={rpp}");
 
             var jsonString = await task.Content.ReadAsStringAsync();
