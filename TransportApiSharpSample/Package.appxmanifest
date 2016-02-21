@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity
-    Name="3c183669-2e56-412c-86a2-74f8e124df96"
-    Publisher = "CN=Mark"
-    Version = "1.0.0.0" /> 
-  <mp:PhoneIdentity PhoneProductId="3c183669-2e56-412c-86a2-74f8e124df96" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <Identity Name="3c183669-2e56-412c-86a2-74f8e124df96" Publisher="CN=Mark" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="3c183669-2e56-412c-86a2-74f8e124df96" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>TransportApiSharpSample</DisplayName>
     <PublisherDisplayName>Mark</PublisherDisplayName>
@@ -27,5 +24,6 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

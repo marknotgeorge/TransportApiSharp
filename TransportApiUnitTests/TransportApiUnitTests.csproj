@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TransportApiSharp\TransportApiSharp.csproj">
-      <Project>{ad4d39c4-3a0c-41d8-a046-ef0d22623c75}</Project>
+      <Project>{352e1d7a-70f4-43c7-92e8-1180e21d3fb2}</Project>
       <Name>TransportApiSharp</Name>
     </ProjectReference>
   </ItemGroup>

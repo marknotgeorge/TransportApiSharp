@@ -5,7 +5,9 @@
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
     "MvvmLightLibs": "5.2.0",
     "Newtonsoft.Json": "8.0.2",
-    "Template10": "1.1.4"
+    "Template10": "1.1.4",
+    "WpWinNl": "3.0.4-alpha",
+    "WpWinNlMaps": "3.0.4-alpha"
   },
   "frameworks": {
     "uap10.0": {}

@@ -16,11 +16,12 @@ namespace TransportApiSharpSample.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<ILocationService, LocationService>();
+            SimpleIoc.Default.Register<IStatusBarService, StatusBarService>();
 
             SimpleIoc.Default.Register<MainPageViewModel>();
         }
 
-        public MainPageViewModel MainViewModel
+        public MainPageViewModel MainPageViewModel
             => ServiceLocator.Current.GetInstance<MainPageViewModel>();
     }
 }

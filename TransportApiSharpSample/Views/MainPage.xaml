@@ -5,31 +5,51 @@
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:drawers="using:TransportApiSharpSample.MapDrawers"
       xmlns:local="using:TransportApiSharpSample.Views"
+      xmlns:mapbinding="using:WpWinNl.Maps"
       xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:TransportApiSharpSample.ViewModels"
       DataContext="{Binding Source={StaticResource Locator},
                             Path=MainPageViewModel}"
       mc:Ignorable="d">
+    <Page.Resources>
+        <mapbinding:MapObjectsListConverter x:Key="MapObjectsListConverter" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader Content="Nearby Bus Stops">
-            <controls:PageHeader.PrimaryCommands>
-                <AppBarButton Command="{Binding LoadBusStops}"
-                              Icon="MapPin"
-                              Label="Load" />
-            </controls:PageHeader.PrimaryCommands>
+        <controls:PageHeader>
+            <controls:PageHeader.Content>
+                <StackPanel Orientation="Horizontal">
+                    <ProgressRing IsActive="{x:Bind Vm.IsProgressRingActive}" />
+                    <TextBlock Text="{x:Bind Vm.CommandBarTitle}" />
+                </StackPanel>
+            </controls:PageHeader.Content>
         </controls:PageHeader>
-
-        <Grid Grid.Row="1" Padding="12,4,0,0">
-            <maps:MapControl x:Name="myMap" />
+        <Grid Grid.Row="2" Padding="12,4,0,0">
+            <maps:MapControl x:Name="mapControl"
+                             Center="{x:Bind Vm.MapCenter, Mode=OneWay}"
+                             ZoomLevel="{x:Bind Vm.MapZoomLevel, Mode=OneWay}">
+                <Interactivity:Interaction.Behaviors>
+                    <mapbinding:MapViewAreaBindingBehavior MapViewArea="{Binding MapArea, Mode=TwoWay}" />
+                    <mapbinding:MapShapeDrawBehavior ItemsSource="{x:Bind Vm.NearbyBusStops, Converter={StaticResource MapObjectsListConverter}}"
+                                                     LayerName="BusStops"
+                                                     PathPropertyName="Point">
+                        <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                            <drawers:BusStopDrawer AnchorX="0.5"
+                                                   AnchorY="1.0"
+                                                   CollisionBehaviorDesired="RemainVisible" />
+                        </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                    </mapbinding:MapShapeDrawBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </maps:MapControl>
         </Grid>
     </Grid>
 </Page>
