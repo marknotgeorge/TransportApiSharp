@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TransportAPISharp
 {
@@ -33,5 +31,59 @@ namespace TransportAPISharp
         public float longitude { get; set; }
         public float latitude { get; set; }
         public int distance { get; set; }
+    }
+
+    public class BusTimetableResponse
+    {
+        [JsonProperty("atcocode")]
+        public string Atcocode { get; set; }
+
+        [JsonProperty("smscode")]
+        public string Smscode { get; set; }
+
+        [JsonProperty("request_time")]
+        public DateTime RequestTime { get; set; }
+
+        [JsonProperty("bearing")]
+        public string Bearing { get; set; }
+
+        [JsonProperty("stop_name")]
+        public string StopName { get; set; }
+
+        [JsonProperty("departures")]
+        public Departures Departures { get; set; }
+    }
+
+    public class Departures
+    {
+        [JsonProperty("all")]
+        public List<BusDeparture> All { get; set; }
+    }
+
+    public class BusDeparture
+    {
+        [JsonProperty("mode")]
+        public string Mode { get; set; }
+
+        [JsonProperty("line")]
+        public string Line { get; set; }
+
+        [JsonProperty("direction")]
+        public string Direction { get; set; }
+
+        [JsonProperty("operator")]
+        public string Operator { get; set; }
+
+        [JsonProperty("aimed_departure_time")]
+        public DateTime AimedDepartureTime { get; set; }
+
+        [JsonProperty("dir")]
+        public string Dir { get; set; }
+
+        [JsonProperty("date")]
+        public DateTime Date { get; set; }
+
+        [JsonProperty("source")]
+        public string Source { get; set; }
     }
 }

@@ -1,0 +1,41 @@
+{
+  "atcocode": "490000077E",
+  "smscode": "58234",
+  "request_time": "2016-02-21T14:33:00+00:00",
+  "bearing": "E",
+  "stop_name": "Euston",
+  "departures": {
+    "all": [
+      {
+        "mode": "bus",
+        "line": "59",
+        "direction": "Streatham Hill/Telford Avenue (Streatham Hill)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "14:34",
+        "dir": "inbound",
+        "date": "2016-02-21",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "68",
+        "direction": "West Norwood (West Norwood)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "14:43",
+        "dir": "inbound",
+        "date": "2016-02-21",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "59",
+        "direction": "Streatham Hill/Telford Avenue (Streatham Hill)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "14:46",
+        "dir": "inbound",
+        "date": "2016-02-21",
+        "source": "Traveline"
+      }
+    ]
+  }
+}
