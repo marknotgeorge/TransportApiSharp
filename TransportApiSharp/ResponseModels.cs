@@ -75,7 +75,7 @@ namespace TransportAPISharp
         public string Operator { get; set; }
 
         [JsonProperty("aimed_departure_time")]
-        public DateTime AimedDepartureTime { get; set; }
+        public TimeSpan AimedDepartureTime { get; set; }
 
         [JsonProperty("dir")]
         public string Dir { get; set; }
@@ -85,5 +85,14 @@ namespace TransportAPISharp
 
         [JsonProperty("source")]
         public string Source { get; set; }
+
+        [JsonIgnore]
+        public DateTime AimedDepartureDateTime
+        {
+            get
+            {
+                return new DateTime(Date.Year, Date.Month, Date.Day, AimedDepartureTime.Hours, AimedDepartureTime.Minutes, AimedDepartureTime.Seconds);
+            }
+        }
     }
 }

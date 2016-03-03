@@ -1,11 +1,13 @@
 ﻿{
   "dependencies": {
     "Cimbalino.Toolkit": "2.1.2",
+    "Exceptionless.DateTimeExtensions": "3.1.44",
+    "FluentDateTime": "1.13.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
     "MvvmLightLibs": "5.2.0",
     "Newtonsoft.Json": "8.0.2",
-    "Template10": "1.1.4",
+    "Template10": "1.1.8",
     "WpWinNl": "3.0.4-alpha",
     "WpWinNlMaps": "3.0.4-alpha"
   },

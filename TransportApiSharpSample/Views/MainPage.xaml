@@ -47,6 +47,9 @@
                                                    AnchorY="1.0"
                                                    CollisionBehaviorDesired="RemainVisible" />
                         </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                        <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                            <mapbinding:EventToHandlerMapper CommandName="SelectCommand" EventName="MapElementClick" />
+                        </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
                     </mapbinding:MapShapeDrawBehavior>
                 </Interactivity:Interaction.Behaviors>
             </maps:MapControl>

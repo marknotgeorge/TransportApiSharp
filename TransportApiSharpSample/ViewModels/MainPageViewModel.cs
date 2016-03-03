@@ -4,12 +4,15 @@ using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using TransportAPISharp;
+using TransportApiSharpSample.Messages;
 using TransportApiSharpSample.Models;
+using TransportApiSharpSample.Views;
 using TransportAPISharpSample;
 using Windows.Devices.Geolocation;
 using Windows.Storage.Streams;
@@ -34,6 +37,11 @@ namespace TransportApiSharpSample.ViewModels
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             ExecuteLoadBusStops();
+            Messenger.Default.Register<BusStopMessage>(this, (message) =>
+            {
+                Debug.WriteLine($"Bus stop selected: {message.Payload.Title}");
+                NavigationService.Navigate(typeof(DetailPage), message.Payload.AtcoCode);
+            });
             return Task.CompletedTask;
         }
 
@@ -42,12 +50,8 @@ namespace TransportApiSharpSample.ViewModels
             if (suspending)
             {
             }
-            return Task.CompletedTask;
-        }
+            Messenger.Default.Unregister<BusStopMessage>(this);
 
-        public override Task OnNavigatingFromAsync(NavigatingEventArgs args)
-        {
-            args.Cancel = false;
             return Task.CompletedTask;
         }
 

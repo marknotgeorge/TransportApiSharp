@@ -19,9 +19,12 @@ namespace TransportApiSharpSample.ViewModels
             SimpleIoc.Default.Register<IStatusBarService, StatusBarService>();
 
             SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<DetailPageViewModel>();
         }
 
         public MainPageViewModel MainPageViewModel
             => ServiceLocator.Current.GetInstance<MainPageViewModel>();
+
+        public DetailPageViewModel DetailPageViewModel => ServiceLocator.Current.GetInstance<DetailPageViewModel>();
     }
 }

@@ -97,8 +97,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TimeFromNowConverter.cs" />
     <Compile Include="GeoboundingBoxMessage.cs" />
     <Compile Include="MapDrawers\BusStopDrawer.cs" />
+    <Compile Include="Messages\BusStopMessage.cs" />
     <Compile Include="Models\BusStop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
@@ -135,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <DesignData Include="SampleData\DetailPageViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
     <Page Include="Views\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

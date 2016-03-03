@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TransportApiSharpSample.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,6 +23,14 @@ namespace TransportApiSharpSample.Views
     /// </summary>
     public sealed partial class DetailPage : Page
     {
+        public DetailPageViewModel Vm
+        {
+            get
+            {
+                return (DetailPageViewModel)DataContext;
+            }
+        }
+
         public DetailPage()
         {
             this.InitializeComponent();
