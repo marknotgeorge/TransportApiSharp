@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using TransportAPISharp;
@@ -16,13 +17,16 @@ using TransportApiSharpSample.Models;
 using TransportApiSharpSample.Views;
 using Windows.Devices.Geolocation;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Navigation;
+using WpWinNl.Maps;
 
 namespace TransportApiSharpSample.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
         private ILocationService _locationService;
+        private List<BasicGeoposition> positions;
 
         public MainPageViewModel(
             ILocationService locationService,
@@ -36,7 +40,17 @@ namespace TransportApiSharpSample.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            ExecuteLoadBusStops();
+            if (mode != NavigationMode.Back)
+                ExecuteLoadBusStops();
+            else
+            {
+                if (positions != null)
+                {
+                    MapArea = GeoboundingBox.TryCompute(positions);
+                    if (MapArea != null)
+                        Messenger.Default.Send<GeoboundingBoxMessage>(new GeoboundingBoxMessage(MapArea));
+                }
+            }
             Messenger.Default.Register<BusStopMessage>(this, (message) =>
             {
                 Debug.WriteLine($"Bus stop selected: {message.Payload.Title}");
@@ -53,6 +67,29 @@ namespace TransportApiSharpSample.ViewModels
             Messenger.Default.Unregister<BusStopMessage>(this);
 
             return Task.CompletedTask;
+        }
+
+        private RelayCommand<MapInputEventArgs> _resetPosition;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand<MapInputEventArgs> ResetPosition
+        {
+            get
+            {
+                return _resetPosition
+                    ?? (_resetPosition = new RelayCommand<MapInputEventArgs>(ExecuteResetPosition));
+            }
+        }
+
+        private async void ExecuteResetPosition(MapInputEventArgs args)
+        {
+            if (args != null)
+            {
+                MapCenter = args.Location;
+                await CreateBusStops(args.Location.Position);
+            }
         }
 
         /// <summary>
@@ -233,37 +270,49 @@ namespace TransportApiSharpSample.ViewModels
 
             if (location != null)
             {
-                var youAreHere = new BusStop(
-                    location.Latitude, location.Longitude,
-                    "You are here!", "",
-                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/YouAreHere.png")));
-
-                NearbyBusStops.Add(youAreHere);
-
-                positions.Add(youAreHere.Point);
-
-                using (var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey))
+                var locationBGP = new BasicGeoposition()
                 {
-                    var response = await client.BusStopsNear(location.Latitude, location.Longitude);
-
-                    if (response != null)
-                    {
-                        foreach (var item in response.stops)
-                        {
-                            var point = new BusStop(item.latitude, item.longitude,
-                                item.name, item.atcocode,
-                                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/BusPin.png")));
-                            NearbyBusStops.Add(point);
-                            positions.Add(point.Point);
-                        }
-
-                        MapArea = GeoboundingBox.TryCompute(positions);
-                        Messenger.Default.Send<GeoboundingBoxMessage>(new GeoboundingBoxMessage(MapArea));
-                    }
-                }
+                    Latitude = location.Latitude,
+                    Longitude = location.Longitude
+                };
+                await CreateBusStops(locationBGP);
             }
 
             await _statusBarService.HideAsync();
+        }
+
+        private async Task CreateBusStops(BasicGeoposition location)
+        {
+            positions = new List<BasicGeoposition>();
+            NearbyBusStops.Clear();
+            var youAreHere = new BusStop(
+                                location.Latitude, location.Longitude,
+                                "You are here!", "",
+                                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/YouAreHere.png")));
+
+            NearbyBusStops.Add(youAreHere);
+
+            positions.Add(youAreHere.Point);
+
+            using (var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey))
+            {
+                var response = await client.BusStopsNear(location.Latitude, location.Longitude);
+
+                if (response != null)
+                {
+                    foreach (var item in response.stops)
+                    {
+                        var point = new BusStop(item.latitude, item.longitude,
+                            item.name, item.atcocode,
+                            RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/BusPin.png")));
+                        NearbyBusStops.Add(point);
+                        positions.Add(point.Point);
+                    }
+
+                    MapArea = GeoboundingBox.TryCompute(positions);
+                    Messenger.Default.Send<GeoboundingBoxMessage>(new GeoboundingBoxMessage(MapArea));
+                }
+            }
         }
     }
 }

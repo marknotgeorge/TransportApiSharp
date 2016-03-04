@@ -47,11 +47,13 @@
                 <DataTemplate>
                     <Grid Height="{Binding ElementName=LineGrid, Path=ActualWidth}">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid x:Name="LineGrid"
+                              Width="100"
+                              Height="100"
                               Margin="2"
                               Background="RoyalBlue">
                             <Viewbox>

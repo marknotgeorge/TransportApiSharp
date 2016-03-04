@@ -33,11 +33,18 @@
                 </StackPanel>
             </controls:PageHeader.Content>
         </controls:PageHeader>
-        <Grid Grid.Row="2" Padding="12,4,0,0">
+        <StackPanel />
+        <Grid Grid.Row="1" Padding="12,4,0,0">
+            <TextBlock Canvas.ZIndex="1"
+                       Text="Click on a bus stop to view the next departures, or double click the map to see that position's nearby stops."
+                       TextWrapping="WrapWholeWords" />
             <maps:MapControl x:Name="mapControl"
                              Center="{x:Bind Vm.MapCenter, Mode=OneWay}"
                              ZoomLevel="{x:Bind Vm.MapZoomLevel, Mode=OneWay}">
                 <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="MapDoubleTapped">
+                        <Core:InvokeCommandAction Command="{x:Bind Vm.ResetPosition}" />
+                    </Core:EventTriggerBehavior>
                     <mapbinding:MapViewAreaBindingBehavior MapViewArea="{Binding MapArea, Mode=TwoWay}" />
                     <mapbinding:MapShapeDrawBehavior ItemsSource="{x:Bind Vm.NearbyBusStops, Converter={StaticResource MapObjectsListConverter}}"
                                                      LayerName="BusStops"
