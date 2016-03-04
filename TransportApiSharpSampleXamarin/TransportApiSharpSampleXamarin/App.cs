@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using System;
+using TransportApiSharpSampleXamarin.Services;
 using TransportApiSharpSampleXamarin.ViewModels;
 using Xamarin.Forms;
 
@@ -18,7 +21,14 @@ namespace TransportApiSharpSampleXamarin
 
         public App()
         {
-            MainPage = new NavigationPage(new MainPage());
+            var navService = new NavigationService();
+            navService.Configure(ViewModelLocator.MainPage, typeof(MainPage));
+            SimpleIoc.Default.Register<INavigationService>(() => navService);
+
+            var mainPage = new NavigationPage(new MainPage());
+            navService.Initialize(mainPage);
+
+            MainPage = mainPage;
         }
 
         public static Page GetMainPage()

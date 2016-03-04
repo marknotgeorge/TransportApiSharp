@@ -15,5 +15,13 @@ namespace TransportApiSharpSampleXamarin
             InitializeComponent();
             BindingContext = App.Locator.MainPageViewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var viewModel = App.Locator.MainPageViewModel;
+
+            viewModel.OnAppearing();
+        }
     }
 }

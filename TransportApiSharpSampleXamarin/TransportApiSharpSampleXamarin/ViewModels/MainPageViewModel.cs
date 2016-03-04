@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,15 @@ namespace TransportApiSharpSampleXamarin.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        private INavigationService _navigationService;
+
+        public MainPageViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+
+        public void OnAppearing()
+        {
+        }
     }
 }

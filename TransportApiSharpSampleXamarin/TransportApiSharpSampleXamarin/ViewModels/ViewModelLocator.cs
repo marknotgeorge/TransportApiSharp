@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransportApiSharpSampleXamarin.Services;
 
 namespace TransportApiSharpSampleXamarin.ViewModels
 {
@@ -13,8 +15,11 @@ namespace TransportApiSharpSampleXamarin.ViewModels
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
             SimpleIoc.Default.Register<MainPageViewModel>();
         }
+
+        public const string MainPage = "MainPage";
 
         /// <summary>
         /// Gets the Main property.
