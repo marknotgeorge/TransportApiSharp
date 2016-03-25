@@ -6,6 +6,7 @@ To use the library, you first need to sign up with TransportAPI and get a key. Y
 
 Here's a bit of sample code which will retrieve and print a list of the 25 bus stops nearest Arnos Grove tube station:
 
+```C#
   public async void BusStopsNearArnosGrove()
     {
       var appId = "abc123"; // This is fake...
@@ -20,7 +21,7 @@ Here's a bit of sample code which will retrieve and print a list of the 25 bus s
         Console.WriteLine(stop.name);
       }
     }
-    
+```
 
 
 
