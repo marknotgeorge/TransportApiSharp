@@ -1,0 +1,137 @@
+﻿{
+  "atcocode": "490000077D",
+  "smscode": "56230",
+  "request_time": "2015-02-19T16:00:00+00:00",
+  "bearing": "E",
+  "stop_name": "Euston",
+  "departures": {
+    "30": [
+      {
+        "mode": "bus",
+        "line": "30",
+        "direction": "Hackney Wick / Trowbridge Rd (Hackney Wick)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:05",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "30",
+        "direction": "Hackney Wick / Trowbridge Rd (Hackney Wick)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:14",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "30",
+        "direction": "Hackney Wick / Trowbridge Rd (Hackney Wick)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:22",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      }
+    ],
+    "73": [
+      {
+        "mode": "bus",
+        "line": "73",
+        "direction": "Stoke Newington Common (Stoke Newington)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:00",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "73",
+        "direction": "Stoke Newington Common (Stoke Newington)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:05",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "73",
+        "direction": "Stoke Newington Common (Stoke Newington)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:10",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      }
+    ],
+    "205": [
+      {
+        "mode": "bus",
+        "line": "205",
+        "direction": "Bow Bus Garage (Bow)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:06",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "205",
+        "direction": "Bow Bus Garage (Bow)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:13",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "205",
+        "direction": "Bow Bus Garage (Bow)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:21",
+        "dir": "outbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      }
+    ],
+    "476": [
+      {
+        "mode": "bus",
+        "line": "476",
+        "direction": "Northumberland Park (Northumberland Park)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:05",
+        "dir": "inbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "476",
+        "direction": "Northumberland Park (Northumberland Park)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:13",
+        "dir": "inbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      },
+      {
+        "mode": "bus",
+        "line": "476",
+        "direction": "Northumberland Park (Northumberland Park)",
+        "operator": "LONDONBUS",
+        "aimed_departure_time": "16:20",
+        "dir": "inbound",
+        "date": "2015-02-19",
+        "source": "Traveline"
+      }
+    ]
+  }
+}

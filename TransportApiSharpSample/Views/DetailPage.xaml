@@ -10,7 +10,29 @@
       mc:Ignorable="d">
 
     <Page.Resources>
+        <Converters:DirectionConverter x:Key="DirectionConverter" />
+        <Converters:OperatorCodeConverter x:Key="OperatorCodeConverter" />
         <Converters:TimeFromNowConverter x:Key="TimeFromNowConverter" />
+        <CollectionViewSource x:Key="GroupedDepartures"
+                              IsSourceGrouped="True"
+                              ItemsPath="Departures"
+                              Source="{Binding DepartureList}" />
+        <DataTemplate x:Key="DepartureDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Operator, Converter={StaticResource OperatorCodeConverter}}" />
+                <TextBlock Grid.Row="1" Text="{Binding AimedDepartureDateTime, Converter={StaticResource TimeFromNowConverter}}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding Direction,
+                                          Converter={StaticResource DirectionConverter}}" />
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
     <Page.DataContext>
         <Binding Path="DetailPageViewModel" Source="{StaticResource Locator}" />
@@ -37,42 +59,21 @@
                               Label="Refresh" />
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
-        <ListView Grid.Row="1" ItemsSource="{Binding Departures}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="{Binding ElementName=LineGrid, Path=ActualWidth}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Grid x:Name="LineGrid"
-                              Width="100"
-                              Height="100"
-                              Margin="2"
-                              Background="RoyalBlue">
-                            <Viewbox>
-                                <TextBlock FontWeight="Bold"
-                                           Foreground="White"
-                                           Text="{Binding Line}" />
-                            </Viewbox>
-                        </Grid>
-
-                        <StackPanel Grid.Column="1" Margin="2">
-                            <TextBlock Text="{Binding AimedDepartureDateTime, Converter={StaticResource TimeFromNowConverter}}" />
+        <ListView x:Name="listView"
+                  Grid.Row="1"
+                  ItemTemplate="{StaticResource DepartureDataTemplate}"
+                  ItemsSource="{Binding Source={StaticResource GroupedDepartures}}">
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Towards: " />
-                                <TextBlock Text="{Binding Direction}" />
+                                <TextBlock FontSize="32" Text="{Binding Line}" />
                             </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
         </ListView>
     </Grid>
 </Page>

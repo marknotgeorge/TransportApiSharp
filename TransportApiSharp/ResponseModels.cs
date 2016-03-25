@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace TransportAPISharp
 {
+    /// <summary>
+    /// The return class for <c>TransportApiClient.BusStopsNear</c>
+    /// </summary>
     public class BusStopsNearResponse
     {
         public float minlon { get; set; }
@@ -51,13 +54,7 @@ namespace TransportAPISharp
         public string StopName { get; set; }
 
         [JsonProperty("departures")]
-        public Departures Departures { get; set; }
-    }
-
-    public class Departures
-    {
-        [JsonProperty("all")]
-        public List<BusDeparture> All { get; set; }
+        public Dictionary<string, List<BusDeparture>> Departures { get; set; }
     }
 
     public class BusDeparture

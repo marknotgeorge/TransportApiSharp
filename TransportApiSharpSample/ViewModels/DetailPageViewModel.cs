@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using TransportAPISharp;
@@ -23,15 +24,40 @@ namespace TransportApiSharpSample.ViewModels
 
             using (var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey))
             {
-                var response = await client.Timetable(atcoCode, DateTime.Now, 10);
-                if (response != null && response.Departures.All.Count > 0)
-                {
-                    Departures = response.Departures.All;
-                    CommandBarTitle = $"Next {Departures.Count} buses from {response.StopName}";
-                }
-                else
+                var response = await client.Timetable(atcoCode, DateTime.Now, true);
+                if (response == null)
                     CommandBarTitle = $"Could not retrieve departures!";
+                else
+                {
+                    CommandBarTitle = $"Next buses from {response.StopName}";
+                    populateDepartures(response);
+                }
+
+                //if (response != null && response.Departures.All.Count > 0)
+                //{
+                //    Departures = response.Departures.All;
+                //    CommandBarTitle = $"Next {Departures.Count} buses from {response.StopName}";
+                //}
+                //else
+                //    CommandBarTitle = $"Could not retrieve departures!";
             }
+        }
+
+        private void populateDepartures(BusTimetableResponse response)
+        {
+            var depList = new ObservableCollection<DeparturesViewModel>();
+
+            foreach (var item in response.Departures)
+            {
+                var line = new DeparturesViewModel()
+                {
+                    Line = item.Key,
+                    Departures = new ObservableCollection<BusDeparture>(item.Value)
+                };
+
+                depList.Add(line);
+            }
+            DepartureList = depList;
         }
 
         public override Task OnNavigatedFromAsync(IDictionary<string, object> pageState, bool suspending)
@@ -40,25 +66,25 @@ namespace TransportApiSharpSample.ViewModels
         }
 
         /// <summary>
-        /// The <see cref="Departures"/> property's name.
+        /// The <see cref="DepartureList"/> property's name.
         /// </summary>
-        public const string DeparturesPropertyName = "Departures";
+        public const string DepartureListPropertyName = "DepartureList";
 
-        private List<BusDeparture> _departures = null;
+        private ObservableCollection<DeparturesViewModel> _departureList = null;
 
         /// <summary>
-        /// Sets and gets the Departures property. Changes to that property's value raise the
+        /// Sets and gets the DepartureList property. Changes to that property's value raise the
         /// PropertyChanged event.
         /// </summary>
-        public List<BusDeparture> Departures
+        public ObservableCollection<DeparturesViewModel> DepartureList
         {
             get
             {
-                return _departures;
+                return _departureList;
             }
             set
             {
-                Set(() => Departures, ref _departures, value);
+                Set(() => DepartureList, ref _departureList, value);
             }
         }
 
@@ -122,7 +148,7 @@ namespace TransportApiSharpSample.ViewModels
                     ?? (_refreshDepartures = new RelayCommand(
                     async () =>
                     {
-                        Departures.Clear();
+                        DepartureList.Clear();
                         await getDepartures(_atcoCode);
                     }));
             }

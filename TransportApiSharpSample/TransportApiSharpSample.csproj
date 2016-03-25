@@ -97,12 +97,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DirectionConverter.cs" />
+    <Compile Include="Converters\OperatorCodeConverter.cs" />
     <Compile Include="Converters\TimeFromNowConverter.cs" />
     <Compile Include="GeoboundingBoxMessage.cs" />
     <Compile Include="MapDrawers\BusStopDrawer.cs" />
     <Compile Include="Messages\BusStopMessage.cs" />
     <Compile Include="Models\BusStop.cs" />
+    <Compile Include="Models\TravelineOperatorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DeparturesViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -123,6 +127,10 @@
     <Content Include="Assets\BusPin.png" />
     <Content Include="Assets\YouAreHere.png" />
     <Content Include="Help.htm" />
+    <Content Include="NOC_Tables.xml" />
+    <Content Include="OperatorsandPublicNames.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -137,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <DesignData Include="SampleData\DetailPageViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
     <Page Include="Views\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,9 +164,7 @@
       <Name>TransportApiSharp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SampleData\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
