@@ -127,10 +127,6 @@
     <Content Include="Assets\BusPin.png" />
     <Content Include="Assets\YouAreHere.png" />
     <Content Include="Help.htm" />
-    <Content Include="NOC_Tables.xml" />
-    <Content Include="OperatorsandPublicNames.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

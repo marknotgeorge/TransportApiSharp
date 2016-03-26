@@ -278,7 +278,21 @@ namespace TransportApiSharpSample.ViewModels
                 await CreateBusStops(locationBGP);
             }
 
+            if (App.OperatorCodes == null)
+            {
+                await _statusBarService.ShowAsync("Loading Bus Operators...", true);
+                App.OperatorCodes = await getOperatorCodes();
+            }
+
             await _statusBarService.HideAsync();
+        }
+
+        private async Task<List<BusOperator>> getOperatorCodes()
+        {
+            using (var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey))
+            {
+                return await client.GetBusOperators();
+            }
         }
 
         private async Task CreateBusStops(BasicGeoposition location)

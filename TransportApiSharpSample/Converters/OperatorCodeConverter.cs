@@ -15,14 +15,17 @@ namespace TransportApiSharpSample.Converters
 
             var valueString = value as string;
 
-            if (valueString != null)
+            if (App.OperatorCodes != null)
             {
-                var operatorRecord = App.OperatorCodes.NocRecords
-                    .Where(operators => operators.NocCode == valueString)
-                    .ToList();
+                if (valueString != null)
+                {
+                    var operatorRecord = App.OperatorCodes
+                        .Where(operators => operators.Code == valueString)
+                        .ToList();
 
-                if (operatorRecord != null)
-                    returnVal = operatorRecord[0].PublicName;
+                    if (operatorRecord != null)
+                        returnVal = operatorRecord[0].ShortName;
+                }
             }
 
             return returnVal;
