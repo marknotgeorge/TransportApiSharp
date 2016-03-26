@@ -12,7 +12,7 @@ Here's a bit of sample code which will retrieve and print a list of the 25 bus s
       var appId = "abc123"; // This is fake...
       var appKey = "gdfkgndkjgndfkgndfklgdk" //... so is this.
             
-      var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey);
+      var client = new TransportApiClient(appId, appKey);
 
       var response = await client.BusStopsNear(51.6164, 0.1330);
             
