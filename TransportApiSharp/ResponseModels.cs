@@ -92,4 +92,16 @@ namespace TransportAPISharp
             }
         }
     }
+
+    public class BusOperator
+    {
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("short_name")]
+        public string ShortName { get; set; }
+
+        [JsonProperty("refid")]
+        public string Refid { get; set; }
+    }
 }

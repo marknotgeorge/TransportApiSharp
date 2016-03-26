@@ -55,5 +55,30 @@ namespace TransportAPISharpUnitTests
 
             Assert.AreEqual(3, response.Departures["all"].Count);
         }
+
+        [TestMethod]
+        public void TestBusOperators()
+        {
+            var mockHandler = getHandler("BusOperatorsResponse.json");
+
+            var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
+
+            var response = client.GetBusOperators().Result;
+
+            Assert.AreEqual(3, response.Count);
+        }
+
+        [TestMethod]
+        public void TestBusOperatorsError()
+        {
+            var client = new TransportApiClient(string.Empty, string.Empty);
+
+            var errorString = "Authorisation failed for app_key  and app_id  with error 'application with id=\"\" was not found' (code 'application_not_found'). See http://transportapi.com for plans and sign-up.";
+
+            var response = client.GetBusOperators().Result;
+
+            Assert.AreEqual(null, response);
+            Assert.AreEqual(errorString, client.LastError);
+        }
     }
 }

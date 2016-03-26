@@ -20,6 +20,8 @@ namespace TransportAPISharp
 
         private HttpClient _httpClient;
 
+        public string LastError { get; set; }
+
         /// <summary>
         /// Initialises a new <c>TransportApiClient</c> class.
         /// </summary>
@@ -48,20 +50,16 @@ namespace TransportAPISharp
         /// <returns>A <c>BusStopsNearResponse</c> class</returns>
         public async Task<BusStopsNearResponse> BusStopsNear(double lat, double lon, int page = 1, int stopsPerPage = 25)
         {
-            BusStopsNearResponse returnVal = null;
             var task = await _httpClient.GetAsync("http://transportapi.com/v3/uk/bus/stops/near.json?"
                 + $"app_id={_appId}&app_key={_appKey}"
                 + $"&lat={lat}&lon={lon}&page={page}&rpp={stopsPerPage}");
 
             var jsonString = await task.Content.ReadAsStringAsync();
-            returnVal = JsonConvert.DeserializeObject<BusStopsNearResponse>(jsonString);
-
-            return returnVal;
+            return deserializeResponse<BusStopsNearResponse>(jsonString);
         }
 
         public async Task<BusTimetableResponse> Timetable(string atcoCode, DateTime dateTime, bool group = true, int limit = 3)
         {
-            BusTimetableResponse returnVal = null;
             var date = dateTime.ToString("yyyy-MM-dd");
             var time = dateTime.ToString("HH:mm");
 
@@ -74,9 +72,33 @@ namespace TransportAPISharp
 
             var jsonString = await task.Content.ReadAsStringAsync();
 
-            returnVal = JsonConvert.DeserializeObject<BusTimetableResponse>(jsonString);
+            return deserializeResponse<BusTimetableResponse>(jsonString);
+        }
 
-            return returnVal;
+        public async Task<List<BusOperator>> GetBusOperators()
+        {
+            var task = await _httpClient.GetAsync(BaseUrl +
+                $"/uk/bus/operators.json?"
+                + $"app_id={_appId}&app_key={_appKey}");
+
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            return deserializeResponse<List<BusOperator>>(jsonString);
+        }
+
+        private T deserializeResponse<T>(string responseString)
+        {
+            try
+            {
+                var returnVal = JsonConvert.DeserializeObject<T>(responseString);
+                return returnVal;
+            }
+            catch (Exception)
+            {
+                var jObject = JObject.Parse(responseString);
+                LastError = (string)jObject["error"];
+                return default(T);
+            }
         }
 
         public void Dispose()
