@@ -54,10 +54,10 @@ namespace TransportAPISharp
         public string StopName { get; set; }
 
         [JsonProperty("departures")]
-        public Dictionary<string, List<BusDeparture>> Departures { get; set; }
+        public Dictionary<string, List<BusTimetableDeparture>> Departures { get; set; }
     }
 
-    public class BusDeparture
+    public class BusTimetableDeparture
     {
         [JsonProperty("mode")]
         public string Mode { get; set; }
@@ -91,6 +91,48 @@ namespace TransportAPISharp
                 return new DateTime(Date.Year, Date.Month, Date.Day, AimedDepartureTime.Hours, AimedDepartureTime.Minutes, AimedDepartureTime.Seconds);
             }
         }
+    }
+
+    public class BusLiveDeparture
+    {
+        [JsonProperty("mode")]
+        public string Mode { get; set; }
+
+        [JsonProperty("line")]
+        public string Line { get; set; }
+
+        [JsonProperty("direction")]
+        public string Direction { get; set; }
+
+        [JsonProperty("operator")]
+        public string Operator { get; set; }
+
+        [JsonProperty("aimed_departure_time")]
+        public DateTime? AimedDepartureTime { get; set; }
+
+        [JsonProperty("expected_departure_time")]
+        public DateTime ExpectedDepartureTime { get; set; }
+
+        [JsonProperty("best_departure_estimate")]
+        public DateTime BestDepartureEstimate { get; set; }
+
+        [JsonProperty("source")]
+        public string Source { get; set; }
+    }
+
+    public class BusLiveResponse
+    {
+        [JsonProperty("atcocode")]
+        public string Atcocode { get; set; }
+
+        [JsonProperty("smscode")]
+        public string Smscode { get; set; }
+
+        [JsonProperty("request_time")]
+        public DateTime RequestTime { get; set; }
+
+        [JsonProperty("departures")]
+        public Dictionary<string, List<BusLiveDeparture>> Departures { get; set; }
     }
 
     public class BusOperator

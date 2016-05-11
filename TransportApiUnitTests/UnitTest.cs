@@ -58,6 +58,18 @@ namespace TransportAPISharpUnitTests
         }
 
         [TestMethod]
+        public void TestBusLive()
+        {
+            var mockHandler = getHandler("BusLiveResponse.json");
+
+            var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
+
+            var response = client.BusLive("490000077D", new DateTime(2015, 2, 19, 16, 00, 00)).Result;
+
+            Assert.AreEqual(4, response.Departures.Count);
+        }
+
+        [TestMethod]
         public void TestBusOperators()
         {
             var mockHandler = getHandler("BusOperatorsResponse.json");

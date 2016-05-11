@@ -1,0 +1,135 @@
+﻿{
+  "atcocode": "490000077D",
+  "smscode": "56230",
+  "request_time": "2015-02-13T12:28:18+00:00",
+  "departures": {
+    "30": [
+      {
+        "mode": "bus",
+        "line": "30",
+        "direction": "Hackney Wick",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:29",
+        "best_departure_estimate": "12:29",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "30",
+        "direction": "Hackney Wick",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:41",
+        "best_departure_estimate": "12:41",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "30",
+        "direction": "Hackney Wick",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:50",
+        "best_departure_estimate": "12:50",
+        "source": "Countdown instant"
+      }
+    ],
+    "73": [
+      {
+        "mode": "bus",
+        "line": "73",
+        "direction": "No Information",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:32",
+        "best_departure_estimate": "12:32",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "73",
+        "direction": "Stoke Newington",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:36",
+        "best_departure_estimate": "12:36",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "73",
+        "direction": "Stoke Newington",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:40",
+        "best_departure_estimate": "12:40",
+        "source": "Countdown instant"
+      }
+    ],
+    "205": [
+      {
+        "mode": "bus",
+        "line": "205",
+        "direction": "Bow Church",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:28",
+        "best_departure_estimate": "12:28",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "205",
+        "direction": "Bow Church",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:36",
+        "best_departure_estimate": "12:36",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "205",
+        "direction": "Bow Church",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:47",
+        "best_departure_estimate": "12:47",
+        "source": "Countdown instant"
+      }
+    ],
+    "476": [
+      {
+        "mode": "bus",
+        "line": "476",
+        "direction": "Nthumberland Pk",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:30",
+        "best_departure_estimate": "12:30",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "476",
+        "direction": "Nthumberland Pk",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:35",
+        "best_departure_estimate": "12:35",
+        "source": "Countdown instant"
+      },
+      {
+        "mode": "bus",
+        "line": "476",
+        "direction": "Nthumberland Pk",
+        "operator": "TFL",
+        "aimed_departure_time": null,
+        "expected_departure_time": "12:43",
+        "best_departure_estimate": "12:43",
+        "source": "Countdown instant"
+      }
+    ]
+  }
+}

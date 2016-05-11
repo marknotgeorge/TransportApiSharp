@@ -86,6 +86,9 @@
     <Content Include="BusOperatorsResponse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="BusLiveResponse.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="BusTimetableTest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

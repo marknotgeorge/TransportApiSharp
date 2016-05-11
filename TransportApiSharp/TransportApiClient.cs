@@ -75,6 +75,24 @@ namespace TransportAPISharp
             return deserializeResponse<BusTimetableResponse>(jsonString);
         }
 
+        public async Task<BusLiveResponse> BusLive(string atcoCode, DateTime dateTime, bool group = true, int limit = 3, bool nextBuses = false)
+        {
+            var date = dateTime.ToString("yyyy-MM-dd");
+            var time = dateTime.ToString("HH:mm");
+
+            var groupValue = (group) ? "route" : "no";
+            var nextBusesValue = (nextBuses) ? "yes" : "no";
+
+            var task = await _httpClient.GetAsync(BaseUrl +
+                $"/uk/bus/stop/{atcoCode}/{date}/{time}/live.json?"
+                + $"app_id={_appId}&app_key={_appKey}"
+                + $"&group={groupValue}&limit={limit}&nextbuses={nextBusesValue}");
+
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            return deserializeResponse<BusLiveResponse>(jsonString);
+        }
+
         public async Task<List<BusOperator>> GetBusOperators()
         {
             var task = await _httpClient.GetAsync(BaseUrl +
