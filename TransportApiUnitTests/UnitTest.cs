@@ -2,6 +2,7 @@
 using RichardSzalay.MockHttp;
 using System;
 using System.IO;
+using TransportApiSharp.Helpers;
 using TransportAPISharp;
 
 namespace TransportAPISharpUnitTests
@@ -39,7 +40,7 @@ namespace TransportAPISharpUnitTests
 
             var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
 
-            var response = client.Timetable("490000077D", new DateTime(2015, 2, 19, 16, 00, 00)).Result;
+            var response = client.BusTimetable("490000077D", new DateTime(2015, 2, 19, 16, 00, 00)).Result;
 
             Assert.AreEqual(4, response.Departures.Count);
         }
@@ -51,7 +52,7 @@ namespace TransportAPISharpUnitTests
 
             var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
 
-            var response = client.Timetable("490000077D", new DateTime(2015, 2, 19, 16, 00, 00), false).Result;
+            var response = client.BusTimetable("490000077D", new DateTime(2015, 2, 19, 16, 00, 00), false).Result;
 
             Assert.AreEqual(3, response.Departures["all"].Count);
         }
@@ -79,6 +80,14 @@ namespace TransportAPISharpUnitTests
 
             Assert.AreEqual(null, response);
             Assert.AreEqual(errorString, client.LastError);
+        }
+
+        [TestMethod]
+        public void TestLocationString()
+        {
+            var returnString = LatLonHelpers.LocationString(51.4728, -0.4876);
+
+            Assert.AreEqual("lonlat:-0.4876,51.4728", returnString);
         }
     }
 }

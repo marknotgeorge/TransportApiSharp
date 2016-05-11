@@ -58,7 +58,7 @@ namespace TransportAPISharp
             return deserializeResponse<BusStopsNearResponse>(jsonString);
         }
 
-        public async Task<BusTimetableResponse> Timetable(string atcoCode, DateTime dateTime, bool group = true, int limit = 3)
+        public async Task<BusTimetableResponse> BusTimetable(string atcoCode, DateTime dateTime, bool group = true, int limit = 3)
         {
             var date = dateTime.ToString("yyyy-MM-dd");
             var time = dateTime.ToString("HH:mm");
