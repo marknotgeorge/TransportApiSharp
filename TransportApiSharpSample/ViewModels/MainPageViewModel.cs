@@ -54,7 +54,9 @@ namespace TransportApiSharpSample.ViewModels
             Messenger.Default.Register<BusStopMessage>(this, (message) =>
             {
                 Debug.WriteLine($"Bus stop selected: {message.Payload.Title}");
-                NavigationService.Navigate(typeof(DetailPage), message.Payload.AtcoCode);
+                var parameters = new BusStopParameter(message.Payload.Title, message.Payload.AtcoCode);
+
+                NavigationService.Navigate(typeof(BusDetailPage), parameters);
             });
             return Task.CompletedTask;
         }
@@ -67,6 +69,147 @@ namespace TransportApiSharpSample.ViewModels
             Messenger.Default.Unregister<BusStopMessage>(this);
 
             return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// The <see cref="IsBusChecked"/> property's name.
+        /// </summary>
+        public const string IsBusCheckedPropertyName = "IsBusChecked";
+
+        private bool? _isBusChecked = true;
+
+        /// <summary>
+        /// Sets and gets the IsBusChecked property. Changes to that property's value raise the
+        /// PropertyChanged event.
+        /// </summary>
+        public bool? IsBusChecked
+        {
+            get
+            {
+                return _isBusChecked;
+            }
+
+            set
+            {
+                if (_isBusChecked == value)
+                {
+                    return;
+                }
+
+                if (value.HasValue && value == true)
+                {
+                    Mode = TransportMode.Bus;
+                    IsTrainChecked = false;
+                    IsTubeChecked = false;
+                }
+
+                _isBusChecked = value;
+                RaisePropertyChanged(IsBusCheckedPropertyName);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="IsTrainChecked"/> property's name.
+        /// </summary>
+        public const string IsTrainCheckedPropertyName = "IsTrainChecked";
+
+        private bool? _isTrainChecked = false;
+
+        /// <summary>
+        /// Sets and gets the IsTrainChecked property. Changes to that property's value raise the
+        /// PropertyChanged event.
+        /// </summary>
+        public bool? IsTrainChecked
+        {
+            get
+            {
+                return _isTrainChecked;
+            }
+
+            set
+            {
+                if (_isTrainChecked == value)
+                {
+                    return;
+                }
+
+                if (value.HasValue && value == true)
+                {
+                    Mode = TransportMode.Train;
+                    IsTubeChecked = false;
+                    IsBusChecked = false;
+                }
+
+                _isTrainChecked = value;
+                RaisePropertyChanged(IsTrainCheckedPropertyName);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="IsTubeChecked"/> property's name.
+        /// </summary>
+        public const string IsTubeCheckedPropertyName = "IsTubeChecked";
+
+        private bool? _isTubeChecked = false;
+
+        /// <summary>
+        /// Sets and gets the IsTubeChecked property. Changes to that property's value raise the
+        /// PropertyChanged event.
+        /// </summary>
+        public bool? IsTubeChecked
+        {
+            get
+            {
+                return _isTubeChecked;
+            }
+
+            set
+            {
+                if (_isTubeChecked == value)
+                {
+                    return;
+                }
+
+                if (value.HasValue && value == true)
+                {
+                    Mode = TransportMode.Tube;
+                    IsBusChecked = false;
+                    IsTrainChecked = false;
+                }
+
+                _isTubeChecked = value;
+                RaisePropertyChanged(IsTubeCheckedPropertyName);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="Mode"/> property's name.
+        /// </summary>
+        public const string ModePropertyName = "Mode";
+
+        private TransportMode _mode = TransportMode.Bus;
+
+        /// <summary>
+        /// Sets and gets the Mode property. Changes to that property's value raise the
+        /// PropertyChanged event.
+        /// </summary>
+        public TransportMode Mode
+        {
+            get
+            {
+                return _mode;
+            }
+
+            set
+            {
+                if (_mode == value)
+                {
+                    return;
+                }
+
+                _mode = value;
+                RaisePropertyChanged(ModePropertyName);
+            }
         }
 
         private RelayCommand<MapInputEventArgs> _resetPosition;

@@ -21,17 +21,17 @@ namespace TransportApiSharpSample.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class DetailPage : Page
+    public sealed partial class BusDetailPage : Page
     {
-        public DetailPageViewModel Vm
+        public BusDetailPageViewModel Vm
         {
             get
             {
-                return (DetailPageViewModel)DataContext;
+                return (BusDetailPageViewModel)DataContext;
             }
         }
 
-        public DetailPage()
+        public BusDetailPage()
         {
             this.InitializeComponent();
         }

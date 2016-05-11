@@ -1,4 +1,4 @@
-﻿<Page x:Class="TransportApiSharpSample.Views.DetailPage"
+﻿<Page x:Class="TransportApiSharpSample.Views.BusDetailPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:Converters="using:TransportApiSharpSample.Converters"
@@ -6,17 +6,24 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TransportApiSharpSample.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      d:DataContext="{d:DesignData /SampleData/DetailPageViewModelSampleData.xaml}"
       mc:Ignorable="d">
 
     <Page.Resources>
+        <Converters:BoolTrueToVisibleConverter x:Key="BoolTrueToVisibleConverter" />
+        <Converters:BoolFalseToVisibleConverter x:Key="BoolFalseToVisibleConverter" />
         <Converters:DirectionConverter x:Key="DirectionConverter" />
         <Converters:OperatorCodeConverter x:Key="OperatorCodeConverter" />
         <Converters:TimeFromNowConverter x:Key="TimeFromNowConverter" />
+        <Converters:TimeSpanFromNowConverter x:Key="TimeSpanFromNowConverter" />
+        <Converters:EstimatedDepartureTimeConverter x:Key="EstimatedDepartureTimeConverter" />
         <CollectionViewSource x:Key="GroupedDepartures"
                               IsSourceGrouped="True"
                               ItemsPath="Departures"
-                              Source="{Binding DepartureList}" />
+                              Source="{Binding TimetableDepartureList}" />
+        <CollectionViewSource x:Key="GroupedLiveDepartures"
+                              IsSourceGrouped="True"
+                              ItemsPath="Departures"
+                              Source="{Binding LiveDepartureList}" />
         <DataTemplate x:Key="DepartureDataTemplate">
             <Grid>
                 <Grid.RowDefinitions>
@@ -26,11 +33,21 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding Operator, Converter={StaticResource OperatorCodeConverter}}" />
                 <TextBlock Grid.Row="1" Text="{Binding AimedDepartureDateTime, Converter={StaticResource TimeFromNowConverter}}" />
-
-                <TextBlock Grid.Row="2"
-                           Grid.Column="1"
-                           Text="{Binding Direction,
-                                          Converter={StaticResource DirectionConverter}}" />
+                <TextBlock Grid.Row="2" Text="{Binding Direction, Converter={StaticResource DirectionConverter}}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="LiveDepartureDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Operator, Converter={StaticResource OperatorCodeConverter}}" />
+                <TextBlock Grid.Row="1" Text="{Binding AimedDepartureTime, Converter={StaticResource TimeSpanFromNowConverter}}" />
+                <TextBlock Grid.Row="2" Text="{Binding BestDepartureEstimate, Converter={StaticResource EstimatedDepartureTimeConverter}}" />
+                <TextBlock Grid.Row="3" Text="{Binding Direction, Converter={StaticResource DirectionConverter}}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -57,12 +74,33 @@
                 <AppBarButton Command="{x:Bind Vm.RefreshDepartures}"
                               Icon="Refresh"
                               Label="Refresh" />
+                <AppBarToggleButton Icon="Clock"
+                                    IsChecked="{x:Bind Vm.UseLiveData, Mode=TwoWay}"
+                                    Label="Use Live Data" />
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
-        <ListView x:Name="listView"
+        <ListView x:Name="TimetableListView"
                   Grid.Row="1"
                   ItemTemplate="{StaticResource DepartureDataTemplate}"
-                  ItemsSource="{Binding Source={StaticResource GroupedDepartures}}">
+                  ItemsSource="{Binding Source={StaticResource GroupedDepartures}}"
+                  Visibility="{x:Bind Vm.UseLiveData, Converter={StaticResource BoolFalseToVisibleConverter}, Mode=TwoWay}">
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="32" Text="{Binding Line}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <ListView x:Name="LiveListView"
+                  Grid.Row="1"
+                  ItemTemplate="{StaticResource LiveDepartureDataTemplate}"
+                  ItemsSource="{Binding Source={StaticResource GroupedLiveDepartures}}"
+                  Visibility="{x:Bind Vm.UseLiveData, Converter={StaticResource BoolTrueToVisibleConverter}, Mode=TwoWay}">
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>

@@ -8,7 +8,7 @@ namespace TransportAPISharp
 {
     public static class ApiCredentials
     {
-        public static string appId = "xxxxxxxxxx";
-        public static string appKey = "yyyyyyyyyyyyyyyyyyyyyyy";
+        public static string appId = "a3260006";
+        public static string appKey = "7da8b119f583033f7679099773592c09";
     }
 }

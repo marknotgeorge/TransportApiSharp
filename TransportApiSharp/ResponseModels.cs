@@ -108,13 +108,13 @@ namespace TransportAPISharp
         public string Operator { get; set; }
 
         [JsonProperty("aimed_departure_time")]
-        public DateTime? AimedDepartureTime { get; set; }
+        public TimeSpan? AimedDepartureTime { get; set; }
 
         [JsonProperty("expected_departure_time")]
-        public DateTime ExpectedDepartureTime { get; set; }
+        public TimeSpan ExpectedDepartureTime { get; set; }
 
         [JsonProperty("best_departure_estimate")]
-        public DateTime BestDepartureEstimate { get; set; }
+        public TimeSpan BestDepartureEstimate { get; set; }
 
         [JsonProperty("source")]
         public string Source { get; set; }

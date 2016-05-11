@@ -58,6 +58,19 @@ namespace TransportAPISharp
             return deserializeResponse<BusStopsNearResponse>(jsonString);
         }
 
+        public async Task<BusStopsNearResponse> BusStopsInBoundingBox(double north, double south, double east, double west, int page = 1, int stopsPerPage = 25)
+        {
+            var task = await _httpClient.GetAsync(BaseUrl +
+                "uk/bus/stops/bbox.json?"
+                + $"app_id={_appId}&app_key={_appKey}"
+                + $"&maxlat={north}&maxlon={east}"
+                + $"&minlat={south}&minlon={west}"
+                + $"&page={page}&rpp={stopsPerPage}");
+
+            var jsonString = await task.Content.ReadAsStringAsync();
+            return deserializeResponse<BusStopsNearResponse>(jsonString);
+        }
+
         public async Task<BusTimetableResponse> BusTimetable(string atcoCode, DateTime dateTime, bool group = true, int limit = 3)
         {
             var date = dateTime.ToString("yyyy-MM-dd");
@@ -75,16 +88,13 @@ namespace TransportAPISharp
             return deserializeResponse<BusTimetableResponse>(jsonString);
         }
 
-        public async Task<BusLiveResponse> BusLive(string atcoCode, DateTime dateTime, bool group = true, int limit = 3, bool nextBuses = false)
+        public async Task<BusLiveResponse> BusLive(string atcoCode, bool group = true, int limit = 3, bool nextBuses = false)
         {
-            var date = dateTime.ToString("yyyy-MM-dd");
-            var time = dateTime.ToString("HH:mm");
-
             var groupValue = (group) ? "route" : "no";
             var nextBusesValue = (nextBuses) ? "yes" : "no";
 
             var task = await _httpClient.GetAsync(BaseUrl +
-                $"/uk/bus/stop/{atcoCode}/{date}/{time}/live.json?"
+                $"/uk/bus/stop/{atcoCode}/live.json?"
                 + $"app_id={_appId}&app_key={_appKey}"
                 + $"&group={groupValue}&limit={limit}&nextbuses={nextBusesValue}");
 

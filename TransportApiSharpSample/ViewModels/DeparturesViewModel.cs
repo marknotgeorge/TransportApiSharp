@@ -8,9 +8,9 @@ using TransportAPISharp;
 
 namespace TransportApiSharpSample.ViewModels
 {
-    public class DeparturesViewModel
+    public class DeparturesViewModel<T>
     {
-        public ObservableCollection<BusDeparture> Departures { get; set; }
+        public ObservableCollection<T> Departures { get; set; }
         public string Line { get; set; }
     }
 }

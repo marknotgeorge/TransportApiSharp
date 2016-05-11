@@ -1,0 +1,98 @@
+﻿{
+  "minlon": -0.10958,
+  "minlat": 51.51988,
+  "maxlon": -0.10475,
+  "maxlat": 51.5231,
+  "searchlon": -0.107165,
+  "searchlat": 51.52149,
+  "page": 1,
+  "rpp": 25,
+  "total": 7,
+  "request_time": "2016-05-11T20:04:39+01:00",
+  "stops": [
+    {
+      "atcocode": "490015104N",
+      "smscode": "50476",
+      "name": "Clerkenwell Road/Farringdon Rd",
+      "mode": "bus",
+      "bearing": "N",
+      "locality": "Clerkenwell",
+      "indicator": "Stop C",
+      "longitude": -0.10687,
+      "latitude": 51.52187,
+      "distance": 47
+    },
+    {
+      "atcocode": "490007901E",
+      "smscode": "72354",
+      "name": "Hatton Garden",
+      "mode": "bus",
+      "bearing": "E",
+      "locality": "Holborn",
+      "indicator": "Stop E",
+      "longitude": -0.10856,
+      "latitude": 51.52213,
+      "distance": 120
+    },
+    {
+      "atcocode": "490015104S",
+      "smscode": "49039",
+      "name": "Clerkenwell Road/Farringdon Rd",
+      "mode": "bus",
+      "bearing": "S",
+      "locality": "Clerkenwell",
+      "indicator": "Stop H",
+      "longitude": -0.10735,
+      "latitude": 51.52265,
+      "distance": 130
+    },
+    {
+      "atcocode": "490007901D",
+      "smscode": "56700",
+      "name": "Hatton Garden",
+      "mode": "bus",
+      "bearing": "W",
+      "locality": "Holborn",
+      "indicator": "Stop D",
+      "longitude": -0.1089,
+      "latitude": 51.52198,
+      "distance": 132
+    },
+    {
+      "atcocode": "490005391K",
+      "smscode": "52323",
+      "name": "Clerkenwell Green",
+      "mode": "bus",
+      "bearing": "W",
+      "locality": "Clerkenwell",
+      "indicator": "Stop K",
+      "longitude": -0.10561,
+      "latitude": 51.52223,
+      "distance": 135
+    },
+    {
+      "atcocode": "490000080A",
+      "smscode": "59385",
+      "name": "Farringdon",
+      "mode": "bus",
+      "bearing": "N",
+      "locality": "Farringdon",
+      "indicator": "Stop A",
+      "longitude": -0.10602,
+      "latitude": 51.52042,
+      "distance": 143
+    },
+    {
+      "atcocode": "490000080B",
+      "smscode": "49482",
+      "name": "Farringdon",
+      "mode": "bus",
+      "bearing": "S",
+      "locality": "Farringdon",
+      "indicator": "Stop B",
+      "longitude": -0.10573,
+      "latitude": 51.52021,
+      "distance": 174
+    }
+  ]
+}

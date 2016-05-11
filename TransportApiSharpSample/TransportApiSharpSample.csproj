@@ -97,21 +97,27 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolFalseToVisibleConverter.cs" />
+    <Compile Include="Converters\BoolTrueToVisibleConverter.cs" />
     <Compile Include="Converters\DirectionConverter.cs" />
+    <Compile Include="Converters\EstimatedDepartureTimeConverter.cs" />
     <Compile Include="Converters\OperatorCodeConverter.cs" />
+    <Compile Include="Converters\TimeSpanFromNowConverter.cs" />
     <Compile Include="Converters\TimeFromNowConverter.cs" />
     <Compile Include="GeoboundingBoxMessage.cs" />
     <Compile Include="MapDrawers\BusStopDrawer.cs" />
     <Compile Include="Messages\BusStopMessage.cs" />
     <Compile Include="Models\BusStop.cs" />
+    <Compile Include="Models\BusStopParameter.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\TravelineOperatorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DeparturesViewModel.cs" />
-    <Compile Include="ViewModels\DetailPageViewModel.cs" />
+    <Compile Include="ViewModels\BusDetailPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\DetailPage.xaml.cs">
-      <DependentUpon>DetailPage.xaml</DependentUpon>
+    <Compile Include="Views\BusDetailPage.xaml.cs">
+      <DependentUpon>BusDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -145,7 +151,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
-    <Page Include="Views\DetailPage.xaml">
+    <Page Include="Views\BusDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -34,6 +34,18 @@ namespace TransportAPISharpUnitTests
         }
 
         [TestMethod]
+        public void TestBusStopsInBoundingBox()
+        {
+            var mockHandler = getHandler("BusStopsBoundingBoxResponse.json");
+
+            var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
+
+            var response = client.BusStopsInBoundingBox(51.5231, -0.10475, 51.51988, -0.10958).Result;
+
+            Assert.AreEqual(7, response.total);
+        }
+
+        [TestMethod]
         public void TestBusTimetableGrouped()
         {
             var mockHandler = getHandler("BusTimeTableGroupedResponse.json");

@@ -1,22 +1,26 @@
 <Page x:Class="TransportApiSharpSample.Views.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Converters="using:TransportApiSharpSample.Converters"
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:drawers="using:TransportApiSharpSample.MapDrawers"
+      xmlns:fontawesome="using:FontAwesome.UWP"
       xmlns:local="using:TransportApiSharpSample.Views"
       xmlns:mapbinding="using:WpWinNl.Maps"
       xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:TransportApiSharpSample.ViewModels"
-      DataContext="{Binding Source={StaticResource Locator},
-                            Path=MainPageViewModel}"
       mc:Ignorable="d">
     <Page.Resources>
         <mapbinding:MapObjectsListConverter x:Key="MapObjectsListConverter" />
     </Page.Resources>
+
+    <Page.DataContext>
+        <Binding Path="MainPageViewModel" Source="{StaticResource Locator}" />
+    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -32,6 +36,21 @@
                     <TextBlock Text="{x:Bind Vm.CommandBarTitle}" />
                 </StackPanel>
             </controls:PageHeader.Content>
+            <AppBarToggleButton IsChecked="{x:Bind Vm.IsBusChecked, Mode=TwoWay}" Label="Bus">
+                <AppBarToggleButton.Icon>
+                    <fontawesome:FontAwesome Icon="Bus" />
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
+            <AppBarToggleButton IsChecked="{x:Bind Vm.IsTrainChecked, Mode=TwoWay}" Label="Train">
+                <AppBarToggleButton.Icon>
+                    <fontawesome:FontAwesome Icon="Train" />
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
+            <AppBarToggleButton IsChecked="{x:Bind Vm.IsTubeChecked, Mode=TwoWay}" Label="Tube">
+                <AppBarToggleButton.Icon>
+                    <fontawesome:FontAwesome Icon="Ticket" />
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
         </controls:PageHeader>
         <StackPanel />
         <Grid Grid.Row="1" Padding="12,4,0,0">

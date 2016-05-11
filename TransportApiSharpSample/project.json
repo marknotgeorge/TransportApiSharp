@@ -3,6 +3,7 @@
     "Cimbalino.Toolkit": "2.1.2",
     "Exceptionless.DateTimeExtensions": "3.1.44",
     "FluentDateTime": "1.13.0",
+    "FontAwesome.UWP": "4.5.0.8",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
     "MvvmLightLibs": "5.2.0",
