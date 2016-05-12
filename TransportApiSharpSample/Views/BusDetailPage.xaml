@@ -14,7 +14,6 @@
         <Converters:DirectionConverter x:Key="DirectionConverter" />
         <Converters:OperatorCodeConverter x:Key="OperatorCodeConverter" />
         <Converters:TimeFromNowConverter x:Key="TimeFromNowConverter" />
-        <Converters:TimeSpanFromNowConverter x:Key="TimeSpanFromNowConverter" />
         <Converters:EstimatedDepartureTimeConverter x:Key="EstimatedDepartureTimeConverter" />
         <CollectionViewSource x:Key="GroupedDepartures"
                               IsSourceGrouped="True"
@@ -42,12 +41,10 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding Operator, Converter={StaticResource OperatorCodeConverter}}" />
-                <TextBlock Grid.Row="1" Text="{Binding AimedDepartureTime, Converter={StaticResource TimeSpanFromNowConverter}}" />
-                <TextBlock Grid.Row="2" Text="{Binding BestDepartureEstimate, Converter={StaticResource EstimatedDepartureTimeConverter}}" />
-                <TextBlock Grid.Row="3" Text="{Binding Direction, Converter={StaticResource DirectionConverter}}" />
+                <TextBlock Grid.Row="1" Text="{Binding BestDepartureEstimate, Converter={StaticResource EstimatedDepartureTimeConverter}}" />
+                <TextBlock Grid.Row="2" Text="{Binding Direction, Converter={StaticResource DirectionConverter}}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>

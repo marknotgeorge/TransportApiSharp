@@ -11,7 +11,7 @@ namespace TransportApiSharpSample.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            string returnVal = "Unknown Operator";
+            string returnVal = string.Empty;
 
             var valueString = value as string;
 
@@ -23,12 +23,12 @@ namespace TransportApiSharpSample.Converters
                         .Where(operators => operators.Code == valueString)
                         .ToList();
 
-                    if (operatorRecord != null)
+                    if (operatorRecord != null && operatorRecord.Count > 0)
                         returnVal = operatorRecord[0].ShortName;
                 }
             }
 
-            return returnVal;
+            return (string.IsNullOrEmpty(returnVal)) ? valueString : returnVal;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

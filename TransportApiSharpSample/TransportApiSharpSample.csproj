@@ -102,7 +102,6 @@
     <Compile Include="Converters\DirectionConverter.cs" />
     <Compile Include="Converters\EstimatedDepartureTimeConverter.cs" />
     <Compile Include="Converters\OperatorCodeConverter.cs" />
-    <Compile Include="Converters\TimeSpanFromNowConverter.cs" />
     <Compile Include="Converters\TimeFromNowConverter.cs" />
     <Compile Include="GeoboundingBoxMessage.cs" />
     <Compile Include="MapDrawers\BusStopDrawer.cs" />

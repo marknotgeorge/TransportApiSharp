@@ -111,7 +111,7 @@ namespace TransportAPISharp
         public TimeSpan? AimedDepartureTime { get; set; }
 
         [JsonProperty("expected_departure_time")]
-        public TimeSpan ExpectedDepartureTime { get; set; }
+        public TimeSpan? ExpectedDepartureTime { get; set; }
 
         [JsonProperty("best_departure_estimate")]
         public TimeSpan BestDepartureEstimate { get; set; }
