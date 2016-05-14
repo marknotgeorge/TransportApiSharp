@@ -1,5 +1,5 @@
-﻿<ViewModels:BusDetailPageViewModel xmlns:ViewModels="using:TransportApiSharpSample.ViewModels" xmlns:TransportAPISharp="using:TransportAPISharp" xmlns:System="using:System" xmlns:Command="using:GalaSoft.MvvmLight.Command" CommandBarTitle="Litora donec pulvinar feugiat etiam" IsProgressRingActive="True">
-	<ViewModels:BusDetailPageViewModel.DepartureList>
+﻿<ViewModels:BusStopDetailViewModel xmlns:ViewModels="using:TransportApiSharpSample.ViewModels" xmlns:TransportAPISharp="using:TransportAPISharp" xmlns:System="using:System" xmlns:Command="using:GalaSoft.MvvmLight.Command" CommandBarTitle="Litora donec pulvinar feugiat etiam" IsProgressRingActive="True">
+	<ViewModels:BusStopDetailViewModel.DepartureList>
 		<ViewModels:DeparturesViewModel Line="Odio tincidunt tristique">
 			<ViewModels:DeparturesViewModel.Departures>
 				<TransportAPISharp:BusTimetableDeparture AimedDepartureDateTime="03/25/2016 17:53:11" Direction="Curabitur mauris cras phasellus" Date="03/25/2016 17:53:11" Dir="Praesent nunc accumsan bibendum" Line="Aenean aliquam class" Mode="Maecenas vestibulum adipiscing parturient" Operator="Consequat duis vestibulum nullam" Source="Curae donec etiam integer quisque">
@@ -290,8 +290,8 @@
 				</TransportAPISharp:BusTimetableDeparture>
 			</ViewModels:DeparturesViewModel.Departures>
 		</ViewModels:DeparturesViewModel>
-	</ViewModels:BusDetailPageViewModel.DepartureList>
-	<ViewModels:BusDetailPageViewModel.RefreshDepartures>
+	</ViewModels:BusStopDetailViewModel.DepartureList>
+	<ViewModels:BusStopDetailViewModel.RefreshDepartures>
 		<Command:RelayCommand/>
-	</ViewModels:BusDetailPageViewModel.RefreshDepartures>
-</ViewModels:BusDetailPageViewModel>
+	</ViewModels:BusStopDetailViewModel.RefreshDepartures>
+</ViewModels:BusStopDetailViewModel>

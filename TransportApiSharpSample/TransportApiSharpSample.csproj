@@ -102,21 +102,27 @@
     <Compile Include="Converters\DirectionConverter.cs" />
     <Compile Include="Converters\EstimatedDepartureTimeConverter.cs" />
     <Compile Include="Converters\OperatorCodeConverter.cs" />
+    <Compile Include="Converters\SelectionChangedConverter.cs" />
     <Compile Include="Converters\TimeFromNowConverter.cs" />
     <Compile Include="GeoboundingBoxMessage.cs" />
     <Compile Include="MapDrawers\BusStopDrawer.cs" />
     <Compile Include="Messages\BusStopMessage.cs" />
+    <Compile Include="Models\BusRouteParameter.cs" />
     <Compile Include="Models\BusStop.cs" />
     <Compile Include="Models\BusStopParameter.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\TravelineOperatorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BusRouteDetailViewModel.cs" />
     <Compile Include="ViewModels\DeparturesViewModel.cs" />
-    <Compile Include="ViewModels\BusDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\BusStopDetailViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\BusDetailPage.xaml.cs">
-      <DependentUpon>BusDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\BusStopDetailPage.xaml.cs">
+      <DependentUpon>BusStopDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BusRouteDetailPage.xaml.cs">
+      <DependentUpon>BusRouteDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -150,7 +156,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
-    <Page Include="Views\BusDetailPage.xaml">
+    <Page Include="Views\BusStopDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BusRouteDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

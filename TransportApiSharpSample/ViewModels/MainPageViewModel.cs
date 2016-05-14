@@ -56,7 +56,7 @@ namespace TransportApiSharpSample.ViewModels
                 Debug.WriteLine($"Bus stop selected: {message.Payload.Title}");
                 var parameters = new BusStopParameter(message.Payload.Title, message.Payload.AtcoCode);
 
-                NavigationService.Navigate(typeof(BusDetailPage), parameters);
+                NavigationService.Navigate(typeof(BusStopDetailPage), parameters);
             });
             return Task.CompletedTask;
         }

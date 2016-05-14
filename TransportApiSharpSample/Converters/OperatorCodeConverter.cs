@@ -19,12 +19,18 @@ namespace TransportApiSharpSample.Converters
             {
                 if (valueString != null)
                 {
-                    var operatorRecord = App.OperatorCodes
-                        .Where(operators => operators.Code == valueString)
-                        .ToList();
+                    // Operator code 'TFL' isn't in the operator code database...
+                    if (valueString == "TFL")
+                        returnVal = "London Buses";
+                    else
+                    {
+                        var operatorRecord = App.OperatorCodes
+                                    .Where(operators => operators.Code == valueString)
+                                    .ToList();
 
-                    if (operatorRecord != null && operatorRecord.Count > 0)
-                        returnVal = operatorRecord[0].ShortName;
+                        if (operatorRecord != null && operatorRecord.Count > 0)
+                            returnVal = operatorRecord[0].ShortName;
+                    }
                 }
             }
 

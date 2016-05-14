@@ -19,12 +19,15 @@ namespace TransportApiSharpSample.ViewModels
             SimpleIoc.Default.Register<IStatusBarService, StatusBarService>();
 
             SimpleIoc.Default.Register<MainPageViewModel>();
-            SimpleIoc.Default.Register<BusDetailPageViewModel>();
+            SimpleIoc.Default.Register<BusStopDetailViewModel>();
+            SimpleIoc.Default.Register<BusRouteDetailViewModel>();
         }
 
         public MainPageViewModel MainPageViewModel
             => ServiceLocator.Current.GetInstance<MainPageViewModel>();
 
-        public BusDetailPageViewModel DetailPageViewModel => ServiceLocator.Current.GetInstance<BusDetailPageViewModel>();
+        public BusStopDetailViewModel BusStopDetailViewModel => ServiceLocator.Current.GetInstance<BusStopDetailViewModel>();
+
+        public BusRouteDetailViewModel BusRouteDetailViewModel => ServiceLocator.Current.GetInstance<BusRouteDetailViewModel>();
     }
 }

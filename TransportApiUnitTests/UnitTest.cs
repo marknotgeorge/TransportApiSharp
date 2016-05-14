@@ -76,7 +76,7 @@ namespace TransportAPISharpUnitTests
 
             var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
 
-            var response = client.BusLive("490000077D", new DateTime(2015, 2, 19, 16, 00, 00)).Result;
+            var response = client.BusLive("490000077D").Result;
 
             Assert.AreEqual(4, response.Departures.Count);
         }

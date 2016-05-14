@@ -2,23 +2,37 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using TransportAPISharp;
 using TransportApiSharpSample.Models;
+using TransportApiSharpSample.Views;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace TransportApiSharpSample.ViewModels
 {
-    public class BusDetailPageViewModel : ViewModelBase
+    public class BusStopDetailViewModel : ViewModelBase
     {
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
-            _stopParameters = parameter as BusStopParameter;
-            await getDepartures(_stopParameters);
+            switch (mode)
+            {
+                case NavigationMode.New:
+                case NavigationMode.Refresh:
+                case NavigationMode.Forward:
+                    _stopParameters = parameter as BusStopParameter;
+                    await getDepartures(_stopParameters);
+                    break;
+
+                case NavigationMode.Back:
+                default:
+                    break;
+            }
         }
 
-        public BusDetailPageViewModel()
+        public BusStopDetailViewModel()
         {
             this.PropertyChanged += BusDetailPageViewModel_PropertyChanged;
         }
@@ -58,6 +72,90 @@ namespace TransportApiSharpSample.ViewModels
                         populateLiveDepartures(response);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="SelectedLiveDeparture"/> property's name.
+        /// </summary>
+        public const string SelectedLiveDeparturePropertyName = "SelectedLiveDeparture";
+
+        private BusLiveDeparture _selectedLiveDeparture = null;
+
+        /// <summary>
+        /// Sets and gets the SelectedLiveDeparture property. Changes to that property's value raise
+        /// the PropertyChanged event.
+        /// </summary>
+        public BusLiveDeparture SelectedLiveDeparture
+        {
+            get
+            {
+                return _selectedLiveDeparture;
+            }
+            set
+            {
+                var parameters = new BusRouteParameter()
+                {
+                    AtcoCode = _stopParameters.AtcoCode,
+                    Direction = value.Direction,
+                    LineName = value.Line,
+                    OperatorCode = value.Operator
+                };
+
+                NavigationService.Navigate(typeof(BusRouteDetailPage), parameters);
+            }
+        }
+
+        private RelayCommand<ItemClickEventArgs> _departureClicked;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand<ItemClickEventArgs> DepartureClicked
+        {
+            get
+            {
+                return _departureClicked
+                    ?? (_departureClicked = new RelayCommand<ItemClickEventArgs>(
+                    (args) =>
+                    {
+                        var clickedTypeName = args.ClickedItem.GetType().Name;
+                        BusRouteParameter parameters = null;
+
+                        if (clickedTypeName == typeof(BusTimetableDeparture).Name)
+                        {
+                            var clickedDeparture = args.ClickedItem as BusTimetableDeparture;
+                            if (clickedDeparture != null)
+                            {
+                                parameters = new BusRouteParameter()
+                                {
+                                    AtcoCode = _stopParameters.AtcoCode,
+                                    Direction = clickedDeparture.Direction,
+                                    LineName = clickedDeparture.Line,
+                                    OperatorCode = clickedDeparture.Operator
+                                };
+                            }
+                        }
+                        else if (clickedTypeName == typeof(BusLiveDeparture).Name)
+                        {
+                            var clickedDeparture = args.ClickedItem as BusLiveDeparture;
+                            if (clickedDeparture != null)
+                            {
+                                parameters = new BusRouteParameter()
+                                {
+                                    AtcoCode = _stopParameters.AtcoCode,
+                                    Direction = clickedDeparture.Direction,
+                                    LineName = clickedDeparture.Line,
+                                    OperatorCode = clickedDeparture.Operator
+                                };
+                            }
+                        }
+
+                        if (parameters != null)
+                        {
+                            NavigationService.Navigate(typeof(BusRouteDetailPage), parameters);
+                        }
+                    }));
             }
         }
 
