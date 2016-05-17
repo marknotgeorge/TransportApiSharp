@@ -1,11 +1,45 @@
 ﻿<Page x:Class="TransportApiSharpSample.Views.BusRouteDetailPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Converters="using:Template10.Converters"
+      xmlns:Converters1="using:TransportApiSharpSample.Converters"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TransportApiSharpSample.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
+    <Page.Resources>
+        <Converters1:TimeSpanToShortTimeConverter x:Key="TimeSpanToShortTimeConverter" />
+        <Converters:StringFormatConverter x:Key="StringFormatConverter" />
+        <DataTemplate x:Key="BusRouteTimetableStopTemplate">
+            <Grid Width="480"
+                  Height="60"
+                  Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Width="75"
+                        Height="75"
+                        Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <TextBlock Width="75"
+                               Height="60"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="{ThemeResource AppBarItemPressedForegroundThemeBrush}"
+                               Text="{Binding Time,
+                                              Converter={StaticResource TimeSpanToShortTimeConverter}}"
+                               TextAlignment="Center" />
+                </Border>
+                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Name}" />
+                    <TextBlock Style="{StaticResource CaptionTextBlockStyle}"
+                               Text="{Binding Locality}"
+                               TextWrapping="NoWrap" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
 
     <Page.DataContext>
         <Binding Path="BusRouteDetailViewModel" Source="{StaticResource Locator}" />
@@ -22,5 +56,9 @@
                 <TextBlock Text="{x:Bind Vm.CommandBarTitle}" />
             </controls:PageHeader.Content>
         </controls:PageHeader>
+        <ListView Grid.Row="1"
+                  d:DataContext="{d:DesignData /SampleData/BusRouteDetailViewModelSampleData.xaml}"
+                  ItemTemplate="{StaticResource BusRouteTimetableStopTemplate}"
+                  ItemsSource="{Binding StopsList}" />
     </Grid>
 </Page>

@@ -12,5 +12,6 @@ namespace TransportApiSharpSample.Models
         public string Direction { get; set; }
         public string LineName { get; set; }
         public string OperatorCode { get; set; }
+        public DateTime DepartureTime { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace TransportApiSharpSample.ViewModels
 
             SimpleIoc.Default.Register<ILocationService, LocationService>();
             SimpleIoc.Default.Register<IStatusBarService, StatusBarService>();
+            SimpleIoc.Default.Register<IMessageBoxService, MessageBoxService>();
 
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<BusStopDetailViewModel>();

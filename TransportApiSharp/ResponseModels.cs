@@ -168,7 +168,7 @@ namespace TransportAPISharp
     public class BusRouteTimetableStop
     {
         [JsonProperty("time")]
-        public string Time { get; set; }
+        public TimeSpan Time { get; set; }
 
         [JsonProperty("atcocode")]
         public string Atcocode { get; set; }

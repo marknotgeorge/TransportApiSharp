@@ -1,0 +1,137 @@
+﻿<ViewModels:BusRouteDetailViewModel xmlns:System="using:System"
+                                    xmlns:TransportAPISharp="using:TransportAPISharp"
+                                    xmlns:ViewModels="using:TransportApiSharpSample.ViewModels"
+                                    CommandBarTitle="Vestibulum class curabitur">
+    <ViewModels:BusRouteDetailViewModel.StopsList>
+        <TransportAPISharp:BusRouteTimetableStop Name="Dignissim adipiscing elementum aliquam duis"
+                                                 Atcocode="Phasellus consequat"
+                                                 Bearing="Est integer hac"
+                                                 Indicator="Aenean sed dis"
+                                                 Latitude="368.66"
+                                                 Locality="Curae nunc"
+                                                 Longitude="114.1"
+                                                 Smscode="Cras nam maecenas convallis"
+                                                 Time="13:47">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Vivamus adipiscing praesent parturient accumsan"
+                                                 Atcocode="Facilisis fermentum"
+                                                 Bearing="Mauris aliquam nullam ante donec"
+                                                 Indicator="Mus fringilla habitasse"
+                                                 Latitude="576.43"
+                                                 Locality="Bibendum leo"
+                                                 Longitude="819.85"
+                                                 Smscode="Parturient vestibulum quisque amet vestibulum"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Imperdiet faucibus vestibulum aptent"
+                                                 Atcocode="Nec aliquet etiam dictumst"
+                                                 Bearing="Eget porttitor tincidunt"
+                                                 Indicator="Blandit penatibus habitant diam adipiscing"
+                                                 Latitude="153.62"
+                                                 Locality="Non vestibulum malesuada"
+                                                 Longitude="354.59"
+                                                 Smscode="Hendrerit eleifend arcu facilisi himenaeos"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Conubia cubilia erat"
+                                                 Atcocode="Commodo elit per"
+                                                 Bearing="Eros dictum"
+                                                 Indicator="Tristique congue interdum ultricies cursus"
+                                                 Latitude="360.81"
+                                                 Locality="Parturient auctor"
+                                                 Longitude="255.64"
+                                                 Smscode="Inceptos enim"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Vestibulum curabitur pharetra placerat"
+                                                 Atcocode="Nibh venenatis sed sem"
+                                                 Bearing="Dapibus sagittis egestas euismod nisi"
+                                                 Indicator="Pulvinar libero vel"
+                                                 Latitude="934.06"
+                                                 Locality="Vestibulum lectus phasellus"
+                                                 Longitude="813.34"
+                                                 Smscode="Lobortis nascetur sit vulputate"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Consequat morbi iaculis"
+                                                 Atcocode="Fusce feugiat adipiscing parturient"
+                                                 Bearing="Nam facilisis nunc fermentum"
+                                                 Indicator="Sociosqu dignissim elementum lacinia"
+                                                 Latitude="301.58"
+                                                 Locality="Convallis senectus ligula"
+                                                 Longitude="482.67"
+                                                 Smscode="Lorem gravida nisl"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Laoreet habitasse ultrices natoque"
+                                                 Atcocode="Fringilla litora vestibulum vestibulum"
+                                                 Bearing="Pede quam malesuada proin"
+                                                 Indicator="Himenaeos orci imperdiet sed nulla"
+                                                 Latitude="832.1"
+                                                 Locality="Hendrerit posuere vehicula volutpat"
+                                                 Longitude="770.03"
+                                                 Smscode="Adipiscing suscipit odio torquent parturient"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Luctus potenti est"
+                                                 Atcocode="Dis maecenas augue vestibulum praesent"
+                                                 Bearing="Adipiscing parturient vestibulum quis"
+                                                 Indicator="Leo magnis vestibulum vestibulum"
+                                                 Latitude="890.46"
+                                                 Locality="Hac vestibulum fames adipiscing parturient"
+                                                 Longitude="630.75"
+                                                 Smscode="Accumsan dolor"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Mauris duis tincidunt"
+                                                 Atcocode="Urna penatibus cras"
+                                                 Bearing="Vestibulum adipiscing amet nostra"
+                                                 Indicator="Dictumst mollis montes"
+                                                 Latitude="506.4"
+                                                 Locality="Nunc bibendum"
+                                                 Longitude="941.72"
+                                                 Smscode="Pretium mattis porttitor"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+        <TransportAPISharp:BusRouteTimetableStop Name="Justo arcu tristique platea"
+                                                 Atcocode="Ante felis rhoncus eleifend facilisi"
+                                                 Bearing="Faucibus sem ultricies diam"
+                                                 Indicator="Primis sed vestibulum"
+                                                 Latitude="447.24"
+                                                 Locality="Nec sodales non per"
+                                                 Longitude="425.49"
+                                                 Smscode="Ornare ipsum parturient mus vestibulum"
+                                                 Time="08:17">
+            <TransportAPISharp:BusRouteTimetableStop.Time>
+                <System:TimeSpan />
+            </TransportAPISharp:BusRouteTimetableStop.Time>
+        </TransportAPISharp:BusRouteTimetableStop>
+    </ViewModels:BusRouteDetailViewModel.StopsList>
+</ViewModels:BusRouteDetailViewModel>

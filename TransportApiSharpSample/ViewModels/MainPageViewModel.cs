@@ -53,7 +53,7 @@ namespace TransportApiSharpSample.ViewModels
             }
             Messenger.Default.Register<BusStopMessage>(this, (message) =>
             {
-                Debug.WriteLine($"Bus stop selected: {message.Payload.Title}");
+                Debug.WriteLine($"Bus stop selected: {message.Payload.Title} - {message.Payload.AtcoCode}");
                 var parameters = new BusStopParameter(message.Payload.Title, message.Payload.AtcoCode);
 
                 NavigationService.Navigate(typeof(BusStopDetailPage), parameters);

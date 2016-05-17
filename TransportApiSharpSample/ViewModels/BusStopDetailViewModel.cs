@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Cimbalino.Toolkit.Services;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,9 +33,10 @@ namespace TransportApiSharpSample.ViewModels
             }
         }
 
-        public BusStopDetailViewModel()
+        public BusStopDetailViewModel(IMessageBoxService messageBoxService)
         {
             this.PropertyChanged += BusDetailPageViewModel_PropertyChanged;
+            _messageBoxService = messageBoxService;
         }
 
         private async void BusDetailPageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -130,25 +132,16 @@ namespace TransportApiSharpSample.ViewModels
                                 parameters = new BusRouteParameter()
                                 {
                                     AtcoCode = _stopParameters.AtcoCode,
-                                    Direction = clickedDeparture.Direction,
+                                    Direction = clickedDeparture.Dir,
                                     LineName = clickedDeparture.Line,
-                                    OperatorCode = clickedDeparture.Operator
+                                    OperatorCode = clickedDeparture.Operator,
+                                    DepartureTime = clickedDeparture.AimedDepartureDateTime
                                 };
                             }
                         }
                         else if (clickedTypeName == typeof(BusLiveDeparture).Name)
                         {
-                            var clickedDeparture = args.ClickedItem as BusLiveDeparture;
-                            if (clickedDeparture != null)
-                            {
-                                parameters = new BusRouteParameter()
-                                {
-                                    AtcoCode = _stopParameters.AtcoCode,
-                                    Direction = clickedDeparture.Direction,
-                                    LineName = clickedDeparture.Line,
-                                    OperatorCode = clickedDeparture.Operator
-                                };
-                            }
+                            _messageBoxService.ShowAsync("I can't yet show route details for live bus departures.", "Sorry!");
                         }
 
                         if (parameters != null)
@@ -315,6 +308,7 @@ namespace TransportApiSharpSample.ViewModels
 
         private RelayCommand _refreshDepartures;
         private BusStopParameter _stopParameters;
+        private IMessageBoxService _messageBoxService;
 
         /// <summary>
         /// Gets the RefreshDepartures.

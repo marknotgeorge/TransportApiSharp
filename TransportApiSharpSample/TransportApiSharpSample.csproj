@@ -104,6 +104,7 @@
     <Compile Include="Converters\OperatorCodeConverter.cs" />
     <Compile Include="Converters\SelectionChangedConverter.cs" />
     <Compile Include="Converters\TimeFromNowConverter.cs" />
+    <Compile Include="Converters\TimeSpanToShortTimeConverter.cs" />
     <Compile Include="GeoboundingBoxMessage.cs" />
     <Compile Include="MapDrawers\BusStopDrawer.cs" />
     <Compile Include="Messages\BusStopMessage.cs" />
@@ -152,7 +153,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <DesignData Include="SampleData\DetailPageViewModelSampleData.xaml">
+    <DesignData Include="SampleData\BusRouteDetailViewModelSampleData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
