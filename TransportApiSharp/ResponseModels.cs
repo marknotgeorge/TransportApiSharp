@@ -118,6 +118,24 @@ namespace TransportAPISharp
 
         [JsonProperty("source")]
         public string Source { get; set; }
+
+        [JsonIgnore]
+        public DateTime BestDepartureEstimateDateTime
+        {
+            get
+            {
+                var dtNow = DateTime.Now;
+
+                var timeNow = dtNow.TimeOfDay;
+
+                // If the BestDepartureEstimate is less than the time now, it's tomorrow, so add a
+                // day to dtNow...
+                if (BestDepartureEstimate < timeNow)
+                    dtNow.AddDays(1);
+
+                return new DateTime(dtNow.Year, dtNow.Month, dtNow.Day, BestDepartureEstimate.Hours, BestDepartureEstimate.Minutes, 0);
+            }
+        }
     }
 
     public class BusLiveResponse
@@ -145,5 +163,53 @@ namespace TransportAPISharp
 
         [JsonProperty("refid")]
         public string Refid { get; set; }
+    }
+
+    public class BusRouteTimetableStop
+    {
+        [JsonProperty("time")]
+        public string Time { get; set; }
+
+        [JsonProperty("atcocode")]
+        public string Atcocode { get; set; }
+
+        [JsonProperty("smscode")]
+        public string Smscode { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("locality")]
+        public string Locality { get; set; }
+
+        [JsonProperty("indicator")]
+        public string Indicator { get; set; }
+
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
+
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+
+        [JsonProperty("bearing")]
+        public string Bearing { get; set; }
+    }
+
+    public class BusRouteTimetableResponse
+    {
+        [JsonProperty("request_time")]
+        public DateTime RequestTime { get; set; }
+
+        [JsonProperty("operator")]
+        public string Operator { get; set; }
+
+        [JsonProperty("line")]
+        public string Line { get; set; }
+
+        [JsonProperty("origin_atcocode")]
+        public string OriginAtcocode { get; set; }
+
+        [JsonProperty("stops")]
+        public IList<BusRouteTimetableStop> Stops { get; set; }
     }
 }

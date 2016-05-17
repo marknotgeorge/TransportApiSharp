@@ -22,6 +22,19 @@ namespace TransportAPISharpUnitTests
         }
 
         [TestMethod]
+        public void TestErrorResponse()
+        {
+            var mockHandler = getHandler("ErrorResponse.json");
+
+            var client = new TransportApiClient(ApiCredentials.appId, ApiCredentials.appKey, mockHandler);
+
+            var response = client.BusStopsNear(51.4728, -0.4876).Result;
+
+            Assert.IsNull(response);
+            Assert.AreEqual("Wibble, wibble. I'm a hatstand.", client.LastError);
+        }
+
+        [TestMethod]
         public void TestBusStopsNear()
         {
             var mockHandler = getHandler("BusStopNearResponse.json");

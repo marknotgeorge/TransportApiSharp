@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -79,7 +80,7 @@ namespace TransportAPISharp
             var groupValue = (group) ? "route" : "no";
 
             var task = await _httpClient.GetAsync(BaseUrl +
-                $"/uk/bus/stop/{atcoCode}/{date}/{time}/timetable.json?"
+                $"uk/bus/stop/{atcoCode}/{date}/{time}/timetable.json?"
                 + $"app_id={_appId}&app_key={_appKey}"
                 + $"&group={groupValue}&limit={limit}");
 
@@ -94,7 +95,7 @@ namespace TransportAPISharp
             var nextBusesValue = (nextBuses) ? "yes" : "no";
 
             var task = await _httpClient.GetAsync(BaseUrl +
-                $"/uk/bus/stop/{atcoCode}/live.json?"
+                $"uk/bus/stop/{atcoCode}/live.json?"
                 + $"app_id={_appId}&app_key={_appKey}"
                 + $"&group={groupValue}&limit={limit}&nextbuses={nextBusesValue}");
 
@@ -103,10 +104,24 @@ namespace TransportAPISharp
             return deserializeResponse<BusLiveResponse>(jsonString);
         }
 
+        public async Task<BusRouteTimetableResponse> BusRouteTimetable(string atcoCode, string direction, string lineName, string operatorCode, DateTime dateTime)
+        {
+            var date = dateTime.ToString("yyyy-mm-dd");
+            var time = dateTime.ToString("HH:mm");
+
+            var task = await _httpClient.GetAsync(BaseUrl +
+                $"uk/bus/route/{operatorCode}/{lineName}/{direction}/{atcoCode}/{date}/{time}/timetable.json?"
+                + $"app_id={_appId}&app_key={_appKey}");
+
+            var jsonString = await task.Content.ReadAsStringAsync();
+
+            return deserializeResponse<BusRouteTimetableResponse>(jsonString);
+        }
+
         public async Task<List<BusOperator>> GetBusOperators()
         {
             var task = await _httpClient.GetAsync(BaseUrl +
-                $"/uk/bus/operators.json?"
+                $"uk/bus/operators.json?"
                 + $"app_id={_appId}&app_key={_appKey}");
 
             var jsonString = await task.Content.ReadAsStringAsync();
@@ -114,19 +129,28 @@ namespace TransportAPISharp
             return deserializeResponse<List<BusOperator>>(jsonString);
         }
 
-        private T deserializeResponse<T>(string responseString)
+        private T deserializeResponse<T>(string responseString) where T : class
         {
-            try
+            T returnVal = null;
+
+            // Valid responses are a JSON array, a JSON object with valid data or a JSON object with
+            // an 'error' key. Parse the response so we can see if it's an array or an object...
+            var parsedResponse = JToken.Parse(responseString);
+
+            if (parsedResponse is JArray)
+                // Response is a JSON array, so it's not an error.
+                returnVal = JsonConvert.DeserializeObject<T>(responseString);
+            else
             {
-                var returnVal = JsonConvert.DeserializeObject<T>(responseString);
-                return returnVal;
+                // Response is a JSON object. Check to see if it contains an 'error' key...
+                var checkForErrors = parsedResponse["error"];
+                if (checkForErrors == null)
+                    returnVal = JsonConvert.DeserializeObject<T>(responseString);
+                else
+                    LastError = checkForErrors.Value<string>();
             }
-            catch (Exception)
-            {
-                var jObject = JObject.Parse(responseString);
-                LastError = (string)jObject["error"];
-                return default(T);
-            }
+
+            return returnVal;
         }
 
         public void Dispose()
