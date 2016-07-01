@@ -8,6 +8,7 @@
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
     "MvvmLightLibs": "5.2.0",
     "Newtonsoft.Json": "8.0.2",
+    "NuGet.Package.Builder": "1.0.10",
     "Template10": "1.1.8",
     "WpWinNl": "3.0.4-alpha",
     "WpWinNlMaps": "3.0.4-alpha"

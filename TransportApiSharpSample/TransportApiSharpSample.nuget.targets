@@ -4,6 +4,7 @@
     <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
+    <Import Project="$(NuGetPackageRoot)\NuGet.Package.Builder\1.0.10\build\NuGet.Package.Builder.targets" Condition="Exists('$(NuGetPackageRoot)\NuGet.Package.Builder\1.0.10\build\NuGet.Package.Builder.targets')" />
     <Import Project="$(NuGetPackageRoot)\Template10\1.1.8\build\uap10.0\Template10.targets" Condition="Exists('$(NuGetPackageRoot)\Template10\1.1.8\build\uap10.0\Template10.targets')" />
   </ImportGroup>
 </Project>
