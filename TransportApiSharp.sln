@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{35EFE4D7-8A31-4F47-82B9-0B7AFC315C80}"
 EndProject
@@ -27,6 +27,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinSample.Windows", "XamarinSample\XamarinSample.Windows\XamarinSample.Windows.csproj", "{1E240D14-499B-4671-BE39-CB5E85147C1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinSample", "XamarinSample\XamarinSample\XamarinSample.csproj", "{3559A0A2-4704-467A-9C12-905A1564A6BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C182B78-2951-4562-B7B8-F7D4943E73DC}"
+	ProjectSection(SolutionItems) = preProject
+		license.md = license.md
+		README.md = README.md
+		TransportApiSharp.md = TransportApiSharp.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -573,5 +580,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B567F0FF-7DEC-4808-B0EF-D9F437B74485} = {35EFE4D7-8A31-4F47-82B9-0B7AFC315C80}
 	EndGlobalSection
 EndGlobal

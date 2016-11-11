@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TransportApiSharp.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,7 +58,14 @@
   <ItemGroup>
     <Folder Include="JsonConverters\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="xmldoc2md.ps1" />
+    <Content Include="xmldoc2md.xsl" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Unrestricted -file "$(ProjectDir)xmldoc2md.ps1" -xml "$(TargetDir)TransportApiSharp.xml" -xsl "$(ProjectDir)xmldoc2md.xsl" -output "$(SolutionDir)TransportApiSharp.md"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
